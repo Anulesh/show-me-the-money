@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - '4000:4000'
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - mock-api
+    env_file:
+      - ./backend/.env
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    env_file:
+      - ./frontend/.env
+
+  mock-api:
+    image: jaypeng2015/show-me-the-money
+    ports:
+      - '3001:3000'
+
+  backend-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend-build
+    command: pnpm test:coverage
+    volumes:
+      - ./backend:/app/backend
+    networks:
+      - test-network
+    environment:
+      - NODE_ENV=test
+
+  frontend-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend-build
+    command: pnpm test:coverage
+    volumes:
+      - ./frontend:/app/frontend
+    networks:
+      - test-network
+    environment:
+      - NODE_ENV=test
+
+networks:
+  test-network:
+    driver: bridge
