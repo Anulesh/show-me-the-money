@@ -113,13 +113,4 @@ You can run backend and frontend tests independently using the following Docker 
 
 After running tests, you can view the test coverage reports generated in the terminal.
 
-## Contributing
-
-Contributions are welcome! If you want to contribute, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch.
-3. Make your changes and commit them.
-4. Push the changes to your fork.
-5. Open a pull request.
 
