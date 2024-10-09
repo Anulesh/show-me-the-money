@@ -57,7 +57,7 @@ describe("GET /api/balance-sheet", () => {
     });
 
     expect(response.statusCode).toBe(500);
-    expect(response.payload).toBe("Failed to fetch balance sheet data");
+    expect(response.payload).toBe("Failed to fetch balance sheet report");
   });
   it("should return 500 if MOCK_API_URL is undefined", async () => {
     delete process.env.MOCK_API_URL;
