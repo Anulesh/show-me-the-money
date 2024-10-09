@@ -67,7 +67,7 @@ const mockReportDataWithUnexpectedRowType: BalanceSheetReport = {
       ],
     },
     {
-      RowType: "UnknownType",
+      RowType: "UnknownType", // Adding unknow type to test default switch case null condtion
       Cells: [],
     },
     {
